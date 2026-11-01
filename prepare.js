@@ -1,0 +1,10 @@
+const fs = require('fs'), path = require('path');
+const src = path.join(__dirname, 'node_modules', 'pdfjs-dist', 'build');
+const out = path.join(__dirname, 'pdfjs');
+fs.mkdirSync(out, { recursive: true });
+['pdf.min.js', 'pdf.worker.min.js'].forEach(f => fs.copyFileSync(path.join(src, f), path.join(out, f)));
+const file = path.join(__dirname, 'index.html');
+let h = fs.readFileSync(file, 'utf8');
+h = h.split('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/').join('pdfjs/');
+fs.writeFileSync(file, h);
+console.log('pdf.js ready (offline)');

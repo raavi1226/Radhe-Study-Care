@@ -1,0 +1,24 @@
+{
+  "name": "radhe-study-care",
+  "version": "1.0.0",
+  "description": "Radhe Study Care - Study planner",
+  "author": "Radhe Study Care",
+  "main": "main.js",
+  "scripts": {
+    "start": "node prepare.js && electron .",
+    "dist": "node prepare.js && electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3",
+    "pdfjs-dist": "3.11.174"
+  },
+  "build": {
+    "appId": "com.radhe.studycare",
+    "productName": "Radhe Study Care",
+    "files": ["main.js", "preload.js", "index.html", "pdfjs/**/*"],
+    "win": { "target": ["nsis", "portable"] },
+    "nsis": { "artifactName": "RadheStudyCare-Setup.exe", "oneClick": false, "allowToChangeInstallationDirectory": true },
+    "portable": { "artifactName": "RadheStudyCare-Portable.exe" }
+  }
+}
